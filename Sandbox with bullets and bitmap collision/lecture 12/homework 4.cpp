@@ -72,6 +72,8 @@ float target1Timer[1][2];
 float target2Timer = 0.0;
 float target3Timer = 0.0;
 
+vector<bullet*> balls;
+
 #define ROCKETRADIUS				10
 //--------------------------------------------------------------------------------------
 // Forward declarations
@@ -660,12 +662,13 @@ void OnLBD(HWND hwnd, BOOL fDoubleClick, int x, int y, UINT keyFlags)
 	bull->pos.z = -cam.position.z;
 	XMMATRIX CR = XMMatrixRotationY(-cam.rotation.y);
 
-	XMFLOAT3 forward = XMFLOAT3(0, 0, 55);
+	XMFLOAT3 forward = XMFLOAT3(0, 0, 100);
 	XMVECTOR f = XMLoadFloat3(&forward);
 	f = XMVector3TransformCoord(f, CR);
 	XMStoreFloat3(&forward, f);
 
 	bull->imp = forward;
+	balls.push_back(bull);
 
 	}
 
